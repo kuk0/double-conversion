@@ -40,7 +40,7 @@ int _hs_ToPrecisionLength(void)
   return kToPrecisionLength;
 }
 
-static int copy(uint16_t *buf, const StringBuilder& builder, const char *cbuf)
+static int copy(uint8_t *buf, const StringBuilder& builder, const char *cbuf)
 {
   const int pos = builder.position();
   for (int i = 0; i < pos; i++)
@@ -48,7 +48,7 @@ static int copy(uint16_t *buf, const StringBuilder& builder, const char *cbuf)
   return pos;
 }
 
-static int copy(uint16_t *buf, const char *cbuf, const int len)
+static int copy(uint8_t *buf, const char *cbuf, const int len)
 {
   for (int i = 0; i < len; i++)
     buf[i] = cbuf[i];
@@ -76,7 +76,7 @@ int _hs_ToShortest(double value, char *buf)
 }
 
 extern "C"
-int _hs_Text_ToShortest(double value, uint16_t *buf)
+int _hs_Text_ToShortest(double value, uint8_t *buf)
 {
   char cbuf[kToShortestLength];
   return copy(buf, cbuf, _hs_ToShortest(value, cbuf));
@@ -91,7 +91,7 @@ int _hs_ToFixed(double value, char *buf, const int ndigits)
 }
 
 extern "C"
-int _hs_Text_ToFixed(double value, uint16_t *buf, const int ndigits)
+int _hs_Text_ToFixed(double value, uint8_t *buf, const int ndigits)
 {
   char cbuf[kToFixedLength];
   return copy(buf, cbuf, _hs_ToFixed(value, cbuf, ndigits));
@@ -106,7 +106,7 @@ int _hs_ToExponential(double value, char *buf, const int ndigits)
 }
 
 extern "C"
-int _hs_Text_ToExponential(double value, uint16_t *buf, const int ndigits)
+int _hs_Text_ToExponential(double value, uint8_t *buf, const int ndigits)
 {
   char cbuf[kToExponentialLength];
   return copy(buf, cbuf, _hs_ToExponential(value, cbuf, ndigits));
@@ -121,7 +121,7 @@ int _hs_ToPrecision(double value, char *buf, const int precision)
 }
 
 extern "C"
-int _hs_Text_ToPrecision(double value, uint16_t *buf, const int precision)
+int _hs_Text_ToPrecision(double value, uint8_t *buf, const int precision)
 {
   char cbuf[kToPrecisionLength];
   return copy(buf, cbuf, _hs_ToPrecision(value, cbuf, precision));
